@@ -11,6 +11,12 @@ const Quiz = ({ answers, correctAnswer, children }: QuizProps) => {
   const [userAnswer, setAnswer] = useState(null);
   const showAnswers = userAnswer !== null;
 
+  const answer = (i: number) => {
+    if (!showAnswers) {
+      setAnswer(i);
+    }
+  };
+
   return (
     <div className={styles.quizContainer}>
       <h3>Quiz!</h3>
@@ -21,7 +27,8 @@ const Quiz = ({ answers, correctAnswer, children }: QuizProps) => {
         {answers.map((ans, i) => (
           <button
             key={ans}
-            onClick={() => setAnswer(i)}
+            onClick={() => answer(i)}
+            disabled={showAnswers && correctAnswer != i}
             className={styles.answerButton}
             style={
               correctAnswer == i && showAnswers
@@ -31,7 +38,12 @@ const Quiz = ({ answers, correctAnswer, children }: QuizProps) => {
                 : {}
             }
           >
-            {ans}
+            {ans}{" "}
+            {showAnswers
+              ? correctAnswer == i
+                ? "✔"
+                : userAnswer == i && "❌"
+              : ""}
           </button>
         ))}
       </div>
