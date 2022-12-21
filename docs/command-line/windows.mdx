@@ -144,3 +144,63 @@ Setiap sistem operasi memiliki sejumlah perintah-perintah bawaan yang ada. Untuk
 | `cat`    | Menampilkan isi dari file   | Path menuju file                         | `cat file.txt`                                         |
 | `mkdir`  | Membuat folder baru         | Nama folder                              | `mkdir folder`                                         |
 | `ls`     | Menampilkan isi dari folder | Path folder (opsional, _default_ ke cwd) | `ls` (tanpa argumen)<br/> `ls folder` (dengan argumen) |
+
+### Menjalankan Program
+
+Selain perintah-perintah yang sudah ada, kamu juga menjalankan program yang ada di sistem kamu. Hal ini dapat dilakukan dengan _environment variable_ bernama `PATH`. Selain itu, file _executable_ yang berada di dalam cwd juga dapat digunakan sebagai perintah.
+
+:::note Apa itu environment variable?
+
+_Environment variable_ adalah variabel yang disimpan dalam sistem operasi dan program untuk menyimpan suatu data. Sebagai contoh, _environment variable_ `WINDIR` menyimpan data lokasi instalasi Windows. Program dapat meminta variabel ini dan mendapatkan data lokasi instalasi Windows.
+
+:::
+
+_Environment variable_ `PATH` adalah variabel yang menyimpan lokasi-lokasi folder yang akan digunakan dalam pencarian suatu perintah. Kamu dapat melihat isi dari variabel ini dengan dua cara, yaitu:
+
+1.  Melalui pengaturan bawaan Windows
+
+    1. Buka aplikasi "Settings"
+    2. Klik "System"
+    3. Pada panel kiri, klik `About`
+    4. Pada panel kanan, klik `Advanced system settings`
+       ![](./assets/winsettings.png)
+    5. Pilih tab `Advanced`, lalu `Environment Variables`
+    6. Variabel bernama `Path` akan terlihat pada user variables. (Apabila tidak ada, kamu bisa membuat baru dengan menu `New` tanpa mengisi value apapun)
+
+2.  Melalui command line
+
+    Cukup jalankan `echo $env:PATH`, dan isi dari variabel tersebut akan muncul. Contoh output:
+
+    ```
+    PS C:\Users\Ren> echo $env:PATH
+    C:\Program Files\PowerShell\7;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Program Files\dotnet\;C:\Program Files\Go\bin
+    ```
+
+:::tip Mengubah PATH
+
+Apabila kamu ingin mengubah isi dari variabel PATH, kamu dapat gunakan pengaturan bawaan Windows yang dapat diakses melalui cara di atas.
+
+:::
+
+Setiap file _executable_ yang ada di folder-folder yang tertera pada isi variabel tersebut dapat digunakan sebagai perintah yang valid di command line.
+
+Sebagai contoh, kamu mempunyai program bernama `ffmpeg.exe` di `D:\bin`. Folder `D:\bin` sudah berada di dalam variabel `PATH`. Maka kamu dapat menggunakan `ffmpeg` di command line.
+
+:::info
+Catat bahwa tidak ada ekstensi file dalam mengeksekusikan suatu perintah.
+:::
+
+```
+PS D:\> ffmpeg
+ffmpeg version 4.2.3 Copyright (c) 2000-2020 the FFmpeg developers
+  built with gcc 9.3.1 (GCC) 20200523
+  [Output dipotong]
+Hyper fast Audio and Video encoder
+usage: ffmpeg [options] [[infile options] -i infile]... {[outfile options] outfile}...
+
+Use -h to get full help or, even better, run 'man ffmpeg'
+```
+
+## Referensi
+
+1. [PowerShell Docs - about_Environment_Variables](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_environment_variables)
