@@ -145,6 +145,46 @@ Setiap sistem operasi memiliki sejumlah perintah-perintah bawaan yang ada. Untuk
 | `mkdir`  | Membuat folder baru         | Nama folder                              | `mkdir folder`                                         |
 | `ls`     | Menampilkan isi dari folder | Path folder (opsional, _default_ ke cwd) | `ls` (tanpa argumen)<br/> `ls folder` (dengan argumen) |
 
+#### Latihan
+
+Untuk memahami konsep command line sebagai explorer dan interaksi dengan perintah, coba lakukan hal berikut:
+
+1. Buka _shell_ dan _file explorer_ kamu
+2. **Pada _file explorer_**, pergi ke `C:\Users\<username_kamu>`
+3. Lakukan `ls` pada command line
+4. Buat folder baru melalui _file explorer_ bernama `latihanshell`
+5. Lakukan `ls` pada command line lagi, apakah kamu bisa menemukan `latihanshell`?
+6. Buat folder baru bernama `latihan` **melalui command line**  
+   Perintah: `mkdir latihan`
+7. **Pada _file explorer_**, refresh dan cek apakah folder `latihan` ada
+8. **Pada _file explorer_**, buat file bernama `tebak.txt` yang berisi `halo dunia!` di dalam folder `latihan`
+9. Cetak isi dari file `tebak.txt` yang berada di folder `latihan` **melalui command line** (Gunakan _relative path_ dan `cat`)  
+   Perintah: `cat latihan/tebak.txt`
+10. Buat file baru bernama `keren.txt` yang berisi `saya cinta fasilkom` di dalam folder `latihanshell` **melalui command line**  
+    Perintah: `echo "saya cinta fasilkom" > latihanshell/keren.txt`
+11. Lihat file kamu baru buat menggunakan _file explorer_
+
+:::note Pengalihan Output
+Jika kamu teliti, pada langkah 10 terdapat operator `>`. Operator ini digunakan untuk mengalihkan semua output dari perintah yang dieksekusi untuk ditulis ke file yang dituju.
+
+Pada contoh langkah 10, output dari `echo "saya cinta fasilkom"` akan ditulis pada `latihanshell/keren.txt`. Karena output dari `echo` adalah argumen yang diberikan, ini sama saja dengan menulis argumen tersebut ke dalam file.
+:::
+
+<Quiz answers={["cat foo.txt", "cat folbar/bar", "cat /bar.txt", "cat bar.txt"]} correctAnswer={3}>
+  Diberikan kondisi folder (yang juga cwd, namun bukan <i>root</i>) seperti berikut:
+  <pre>
+
+- foo.txt
+- bar
+- folbar
+  - lancar.txt
+
+</pre>
+
+Bagaimana cara mencetak isi dari file `bar`?
+
+</Quiz>
+
 ### Menjalankan Program
 
 Selain perintah-perintah yang sudah ada, kamu juga menjalankan program yang ada di sistem kamu. Hal ini dapat dilakukan dengan _environment variable_ bernama `PATH`. Selain itu, file _executable_ yang berada di dalam cwd juga dapat digunakan sebagai perintah.
