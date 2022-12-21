@@ -49,3 +49,39 @@ DDP-1
     |--- tp03.py
     |--- tp04.py
 ```
+
+## Path
+
+Setelah mengenal folder dan file, filesystem tentu saja membutuhkan lokasi di mana folder atau file tersebut disimpan. Seperti pada contoh folder `DDP-1` di atas, pada umumnya suatu filesystem menyimpan lokasi seperti suatu "tree", di mana untuk setiap folder atau file mempunyai suatu _parent_ hingga _root_ dari file system tersebut. Perlu diingat bahwa path dapat merepresentasikan folder maupun file.
+
+Sebagai contoh, terdapat suatu file di `C:\Users\User\halo.txt`. Maka:
+
+- Parent dari file tersebut adalah folder `C:\Users\User`
+- Root dari file system tersebut adalah `C:\`
+
+Apabila kamu menggunakan Linux/macOS, contoh tersebut dapat berupa `/home/user/halo.txt`. Sehingga:
+
+- Parent dari file tersebut adalah folder `/home/user`
+- Root dari file system akan selalu `/`
+
+### Representasi Path
+
+Suatu path memiliki dua cara representasi: _relative_ atau _absolute_. Suatu path yang direpresentasikan secara _absolute_ **pasti** memiliki _root_-nya. Sebagai contoh, `C:\Users\User\halo.txt` untuk Windows dan `/home/user/halo.txt` untuk Linux/macOS. Path yang bersifat _absolute_ pasti memiliki informasi total mengenai arah ke folder/file tersebut.
+
+Suatu path yang bersifat _relative_ hanya memiliki sebagian dari informasi path tersebut. Sebagai contoh, `halo.txt` dan `user/halo.txt` merupakan contoh valid dari _relative path_. Untuk mengakses file tersebut, perlu digabung dengan informasi lain yang diberikan program agar file yang diminta dapat ditemukan. Pada umumnya, _relative path_ biasa digabungkan dengan folder dimana program itu dijalankan. Kamu akan mempelari hal ini lebih lanjut pada topik Command Line.
+
+Sebagai contoh, lihat kondisi folder berikut:
+
+![Folder](./assets/explorer.png)
+
+Isi dari folder `folder` adalah sebagai berikut:
+![Subfolder folder](./assets/explorer2.png)
+
+Berikut cara merepresentasikan setiap file dan folder yang ada di dalam folder `D:\contoh` (relatif terhadap folder `D:\contoh`, seperti pada explorer):
+
+| Absolute                   | Relative         | Jenis  |
+| -------------------------- | ---------------- | ------ |
+| D:\contoh                  | .                | Folder |
+| D:\contoh\file.txt         | file.txt         | File   |
+| D:\contoh\folder           | folder           | Folder |
+| D:\contoh\folder\file2.txt | folder/file2.txt | File   |
