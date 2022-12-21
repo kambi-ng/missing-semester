@@ -129,8 +129,16 @@ Directory of C:\Users\Public
 
 Kamu bisa berpindah ke folder lain menggunakan perintah `cd`.
 
-- Untuk berpindah ke folder yang ada di dalam folder cwd, ketik `cd <nama_folder>`.
+- Untuk berpindah ke folder yang ada di dalam folder cwd, ketik `cd <path_ke_folder>`.
 - Untuk berpindah ke folder sebelumnya, ketik `cd ..`
+
+:::tip
+
+Argumen `<path_ke_folder>` dapat berupa _relative_ atau _absolute_ path. Apabila kamu lupa mengenai konsep representasi path, klik [di sini](../filesystem#representasi-path) untuk mempelajari kembali.
+
+Kamu juga bisa menggabungkan folder sebelumnya dengan relative path. Sebagai contoh, jika kamu berada di `C:\home\user\halo` dan ingin pindah ke `C:\home\user\keren`, kamu bisa gunakan `cd ..\keren`.
+
+:::
 
 Perhatikan perubahan cwd yang ada dalam ilustrasi berikut.
 
