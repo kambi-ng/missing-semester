@@ -17,30 +17,13 @@ Sebagai mahasiswa fakultas Ilmu Komputer, kita akan seringkali bertemu dengan _c
 
 Materi ini ditujukan untuk mengajarkan kamu untuk menggunakan _command line_ dalam melakukan berbagai macam tugas. Materi akan berbentuk tutorial dengan penjelasan. Kamu diharapkan untuk membaca penjelasan, tidak hanya _copy-paste_ perintah-perintah yang ada.
 
-:::info Pemilihan tab shell
+:::warning Dokumen ini menggunakan PowerShell
 
-Windows memiliki dua _shell_, yaitu Command Prompt dan Powershell. Sebelum melanjutkan, harap ketahui shell yang kamu gunakan. Buka Windows Terminal atau terminal pada Visual Studio Code. Lalu lihat baris pertama:
+Windows memiliki dua _shell_, yaitu Command Prompt dan PowerShell. Sebelum melanjutkan, harap ketahui shell yang digunakan adalah **PowerShell**, bukan Command Prompt.
 
-- Apabila terlihat seperti berikut, maka shell kamu adalah **Command Prompt** (`CMD`)
+Apabila kamu menggunakan Visual Studio Code, kamu [dapat mengganti _shell_-nya](https://stackoverflow.com/a/45899693).
 
-  ```
-  Microsoft Windows [Version 10.0.19045.2364]
-  (c) Microsoft Corporation. All rights reserved.
-
-  C:\Users\User>
-  ```
-
-- Apabila terlihat seperti berikut, maka shell kamu adalah **Powershell** (`PWSH`)
-
-  ```
-  PowerShell 7.2.8
-  Copyright (c) Microsoft Corporation.
-
-  https://aka.ms/powershell
-  Type 'help' to get help.
-
-  PS C:\Users\User>
-  ```
+Apabila kamu tidak menggunakan Windows 11, kamu disarankan untuk [memasang versi PowerShell terbaru](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell).
 
 :::
 
@@ -48,14 +31,9 @@ Windows memiliki dua _shell_, yaitu Command Prompt dan Powershell. Sebelum melan
 
 Buka shell kalian menggunakan Windows Terminal atau terminal di Visual Studio Code. Kalian akan melihat baris yang terlihat seperti berikut:
 
-<Tabs groupId="shell">
-  <TabItem value="cmd" label="Command Prompt">
-    <pre>PS C:\Users\User></pre>
-  </TabItem>
-  <TabItem value="pwsh" label="Powershell">
-    <pre>C:\Users\User></pre>
-  </TabItem>
-</Tabs>
+```
+PS C:\Users\User>
+```
 
 Setiap kali kalian melihat baris tersebut, artinya _command line_ siap menerima perintah baru. Setiap perintah yang kalian jalankan pada _command line_ akan dieksekusi pada _current working directory_.
 
@@ -66,12 +44,6 @@ _Current working directory_ adalah posisi di mana _command line_ kalian berada. 
 PS C:\Users\User>
    ^^^^^^^^^^^^^
        CWD
-
-------------------
-
-C:\Users\User>
-^^^^^^^^^^^^^
-     CWD
 ```
 
 Sebagai contoh, pada contoh di atas, _current working directory_-nya adalah `C:\Users\User`. Anggap _current working directory_ ini adalah _file explorer_ kalian, di mana folder tersebut sedang dibuka.
@@ -85,47 +57,21 @@ Mulai titik ini, semua _current working directory_ akan disingkat menjadi `cwd`.
 
 Seperti halnya dengan _file explorer_, kamu bisa melakukan banyak hal. Cetak semua isi folder kalian menggunakan perintah `dir`.
 
-<Tabs groupId="shell">
-  <TabItem value="cmd" label="Command Prompt">
-    <pre>
-C:\Users\Public>dir
+```
+PS C:\Users\Public> dir
 
-Volume in drive C has no label.
-Volume Serial Number is 3CEA-EF6E
+Directory: C:\Users\Public
 
-Directory of C:\Users\Public
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-r--          12/15/2022 11:19 PM                Documents
+d-r--           12/7/2019  4:14 PM                Downloads
+d-r--           12/7/2019  4:14 PM                Music
+d-r--           12/7/2019  4:14 PM                Pictures
+d-r--           12/7/2019  4:14 PM                Videos
+```
 
-05/03/2022 08:16 PM <DIR\> .
-05/03/2022 08:16 PM <DIR\> ..
-12/15/2022 11:19 PM <DIR\> Documents
-12/07/2019 04:14 PM <DIR\> Downloads
-12/07/2019 04:14 PM <DIR\> Music
-12/07/2019 04:14 PM <DIR\> Pictures
-12/07/2019 04:14 PM <DIR\> Videos
-0 File(s) 0 bytes
-7 Dir(s) 71,948,279,808 bytes free
-
-</pre>
-
-  </TabItem>
-  <TabItem value="pwsh" label="Powershell">
-    <pre>
-        PS C:\Users\Public> dir
-
-        Directory: C:\Users\Public
-
-        Mode                 LastWriteTime         Length Name
-        ----                 -------------         ------ ----
-        d-r--          12/15/2022 11:19 PM                Documents
-        d-r--           12/7/2019  4:14 PM                Downloads
-        d-r--           12/7/2019  4:14 PM                Music
-        d-r--           12/7/2019  4:14 PM                Pictures
-        d-r--           12/7/2019  4:14 PM                Videos
-
-  </pre>
-
-  </TabItem>
-</Tabs>
+### Berpindah Folder
 
 Kamu bisa berpindah ke folder lain menggunakan perintah `cd`.
 
@@ -134,7 +80,7 @@ Kamu bisa berpindah ke folder lain menggunakan perintah `cd`.
 
 :::tip
 
-Argumen `<path_ke_folder>` dapat berupa _relative_ atau _absolute_ path. Apabila kamu lupa mengenai konsep representasi path, klik [di sini](../filesystem#representasi-path) untuk mempelajari kembali.
+`<path_ke_folder>` dapat berupa _relative_ atau _absolute_ path. Apabila kamu lupa mengenai konsep representasi path, klik [di sini](../filesystem#representasi-path) untuk mempelajari kembali.
 
 Kamu juga bisa menggabungkan folder sebelumnya dengan relative path. Sebagai contoh, jika kamu berada di `C:\home\user\halo` dan ingin pindah ke `C:\home\user\keren`, kamu bisa gunakan `cd ..\keren`.
 
@@ -142,30 +88,11 @@ Kamu juga bisa menggabungkan folder sebelumnya dengan relative path. Sebagai con
 
 Perhatikan perubahan cwd yang ada dalam ilustrasi berikut.
 
-<Tabs groupId="shell">
-  <TabItem value="cmd" label="Command Prompt">
-<pre>
-
-C:\Users\Public>cd Downloads
-
-C:\Users\Public\Downloads>cd ..
-
-C:\Users\Public>
-
-</pre>
-
-  </TabItem>
-  <TabItem value="pwsh" label="Powershell">
-<pre>
-
+```
 PS C:\Users\Public> cd Downloads
 PS C:\Users\Public\Downloads> cd ..
 PS C:\Users\Public>
-
-</pre>
-
-  </TabItem>
-</Tabs>
+```
 
 <Quiz answers={["D:\\semoga", "D:\\semoga\\lancar", "D:\\lancar", "D:\\lancar\\ya"]} correctAnswer={2}>
   Anggap kondisi command line sedang berada pada <code>D:\</code>. Apabila
