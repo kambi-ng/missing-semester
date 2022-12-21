@@ -22,11 +22,11 @@ Untuk memahami secara penuh mengenai konsep filesystem, kamu harus membuat Windo
 
 ## File
 
-File adalah hal yang biasa kamu temui dalam mengoperasikan suatu komputer. Suatu file dapat menyimpan berbagai macam informasi. Biasanya, suatu file terdiri dari dua bagian, nama file dan juga _extension_-nya. Sebagai contoh, saat kamu membuka suatu dokumen word, kamu berinteraksi dengan suatu file dengan ekstensi `.docx` (atau `.doc`).
+File adalah berkas yang biasa kamu temui dalam mengoperasikan suatu komputer. Suatu file dapat menyimpan berbagai macam informasi. Biasanya, suatu file terdiri dari dua bagian, nama file dan juga _extension_-nya. Sebagai contoh, saat kamu membuka suatu dokumen word, kamu berinteraksi dengan suatu file dengan _extension_ `.docx` (atau `.doc`).
 
 Namun, perlu diketahui bahwa nama lengkap suatu file **tidak perlu** terbentuk dari dua bagian itu. Suatu file bisa saja bernama sepert `.env` atau `hello`, dan tersebut tetaplah nama yang valid. Jadi, jangan kaget apabila kamu menemukan suatu file yang terlihat tidak mempunyai "nama" atau _extension_.
 
-Perlu diketahui juga bahwa tidak semua file dapat dibuka dengan cara meng-klik dua kali. Bisa saja suatu file harus dibuka dengan cara khusus sendiri. Oleh karena itu, apabila kamu tidak bisa membuka suatu file dengan klik dua kali, jangan panik! Coba lakukan GSGS terlebih dahulu untuk mencari tahu cara membukanya. Ada kemungkinan juga bahwa file tersebut bukan untuk dibuka juga.
+Perlu diketahui juga bahwa tidak semua file dapat dibuka dengan cara mengeklik dua kali. Bisa saja suatu file harus dibuka dengan cara khusus sendiri. Oleh karena itu, apabila kamu tidak bisa membuka suatu file dengan klik dua kali, jangan panik! Coba lakukan GSGS terlebih dahulu untuk mencari tahu cara membukanya. Ada kemungkinan juga bahwa file tersebut tidak dimaksud untuk dibuka.
 
 Penggunaan suatu file dapat dilakukan oleh program juga. Sehingga tidak hanya pengguna yang dapat melakukan akses dan mengubah suatu file. Sebagai contoh, suatu game RPG harus melakukan akses pada save file agar pemain bisa menyimpan _progress_ dari permainannya. Kamu akan belajar bagaimana suatu aplikasi dapat mengakses suatu file pada topik Command Line nanti.
 
@@ -36,21 +36,7 @@ Folder adahal suatu "kotak" virtual yang digunakan untuk menyimpan file-file yua
 
 Sebagai contoh, kamu mempunyai folder bernama `DDP-1`, di mana dalam folder tersebut memiliki dua folder lagi, yaitu `TP`, dan `Lab`. Untuk masing-masing folder, kamu menyimpan _source code_ dari setiap tugas TP atau Lab kamu. Berikut ilustrasi dari folder tersebut:
 
-```
-DDP-1
-|
-|-- Lab
-    |--- lab1.py
-    |--- lab2.py
-    |--- lab3.py
-    |--- lab4.py
-    |--- lab5.py
-|-- TP
-    |--- tp01.py
-    |--- tp02.py
-    |--- tp03.py
-    |--- tp04.py
-```
+![Contoh folder DDP-1](./assets/samplefolder.png)
 
 ## Path
 
@@ -70,23 +56,62 @@ Apabila kamu menggunakan Linux/macOS, contoh tersebut dapat berupa `/home/user/h
 
 Suatu path memiliki dua cara representasi: _relative_ atau _absolute_. Suatu path yang direpresentasikan secara _absolute_ **pasti** memiliki _root_-nya. Sebagai contoh, `C:\Users\User\halo.txt` untuk Windows dan `/home/user/halo.txt` untuk Linux/macOS. Path yang bersifat _absolute_ pasti memiliki informasi total mengenai arah ke folder/file tersebut.
 
-Suatu path yang bersifat _relative_ hanya memiliki sebagian dari informasi path tersebut. Sebagai contoh, `halo.txt` dan `user/halo.txt` merupakan contoh valid dari _relative path_. Untuk mengakses file tersebut, perlu digabung dengan informasi lain yang diberikan program agar file yang diminta dapat ditemukan. Pada umumnya, _relative path_ biasa digabungkan dengan folder dimana program itu dijalankan. Kamu akan mempelari hal ini lebih lanjut pada topik Command Line.
+Suatu path yang bersifat _relative_ hanya memiliki sebagian dari informasi path tersebut. Sebagai contoh, `halo.txt` dan `user/halo.txt` merupakan contoh valid dari _relative path_. Tidak hanya itu, _relative path_ juga dapat digunakan untuk mereferensikan _parent_ dari folder tersebut, menggunakan `..` sebagai penanda. Kamu akan melihat contoh penggunaannya di bawah.
+
+Untuk mengakses file yang direferensikan oleh _relative path_, perlu digabung dengan informasi lain yang diberikan program agar file yang diminta dapat ditemukan. Pada umumnya, _relative path_ biasa digabungkan dengan folder dimana program itu dijalankan. Kamu akan mempelari hal ini lebih lanjut pada topik Command Line.
+
+### Contoh
 
 Sebagai contoh, lihat kondisi folder berikut:
 
 ![Folder](./assets/explorer.png)
 
-Isi dari folder `folder` adalah sebagai berikut:
+Isi dari folder `foo` adalah sebagai berikut:
 ![Subfolder folder](./assets/explorer2.png)
+
+#### Pada Windows
 
 Berikut cara merepresentasikan setiap file dan folder yang ada di dalam folder `D:\contoh` (relatif terhadap folder `D:\contoh`, seperti pada explorer):
 
-| Absolute                   | Relative         | Jenis  |
-| -------------------------- | ---------------- | ------ |
-| D:\contoh                  | .                | Folder |
-| D:\contoh\file.txt         | file.txt         | File   |
-| D:\contoh\folder           | folder           | Folder |
-| D:\contoh\folder\file2.txt | folder/file2.txt | File   |
+| Absolute                 | Relative        | Jenis  |
+| ------------------------ | --------------- | ------ |
+| D:\                      | `..`            | Folder |
+| D:\contoh                | `.`             | Folder |
+| D:\contoh\bar.txt        | `bar.txt`       | File   |
+| D:\contoh\foo            | `foo`           | Folder |
+| D:\contoh\foo\foobar.txt | `foo\file2.txt` | File   |
+
+Apabila relatif terhadap folder `D:\contoh\foo`:
+
+| Absolute                 | Relative     | Jenis  |
+| ------------------------ | ------------ | ------ |
+| D:\                      | `..\..`      | Folder |
+| D:\contoh                | `..`         | Folder |
+| D:\contoh\bar.txt        | `..\bar.txt` | File   |
+| D:\contoh\foo            | `.`          | Folder |
+| D:\contoh\foo\foobar.txt | `file2.txt`  | File   |
+
+#### Pada Linux/macOS
+
+Berikut cara merepresentasikan setiap file dan folder yang ada di dalam folder `/d/contoh` (relatif terhadap folder `/d/contoh`, seperti pada explorer):
+
+| Absolute                 | Relative        | Jenis  |
+| ------------------------ | --------------- | ------ |
+| /d/                      | `..`            | Folder |
+| /d/contoh                | `.`             | Folder |
+| /d/contoh/bar.txt        | `bar.txt`       | File   |
+| /d/contoh/foo            | `foo`           | Folder |
+| /d/contoh/foo/foobar.txt | `foo/file2.txt` | File   |
+
+Apabila relatif terhadap folder `/d/contoh/foo`:
+
+| Absolute                 | Relative     | Jenis  |
+| ------------------------ | ------------ | ------ |
+| /d/                      | `../..`      | Folder |
+| /d/contoh                | `..`         | Folder |
+| /d/contoh/bar.txt        | `../bar.txt` | File   |
+| /d/contoh/foo            | `.`          | Folder |
+| /d/contoh/foo/foobar.txt | `file2.txt`  | File   |
 
 <Quiz
   answers={[
