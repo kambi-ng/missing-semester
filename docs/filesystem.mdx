@@ -3,6 +3,8 @@ sidebar_position: 3
 title: 2. Konsep Filesystem
 ---
 
+import Quiz from "@site/src/components/quiz";
+
 # Filesystem
 
 Filesystem adalah cara suatu sistem operasi melakukan organisasi dan penyimpanan file di suatu hard drive atau alat penyimpanan lainnya. Konsep ini memberi fondasi untuk sistem operasi dalam menyimpan dan melacak bagaimana suatu file itu disimpan, dan hubungannya dengan file lain.
@@ -85,3 +87,18 @@ Berikut cara merepresentasikan setiap file dan folder yang ada di dalam folder `
 | D:\contoh\file.txt         | file.txt         | File   |
 | D:\contoh\folder           | folder           | Folder |
 | D:\contoh\folder\file2.txt | folder/file2.txt | File   |
+
+<Quiz
+  answers={[
+    "cinta/pacil",
+    "pacil",
+    "user/saya/cinta/pacil",
+    "saya/cinta/pacil",
+    "home/user/saya/cinta/pacil",
+  ]}
+  correctAnswer={3}
+>
+  Jika terdapat suatu file pada <code>/home/user/saya/cinta/pacil</code>, dan
+  kamu berada padda <code>/home/user</code>, apakah <i>relative path</i> file
+  tersebut?
+</Quiz>
