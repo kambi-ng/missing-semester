@@ -108,3 +108,39 @@ cd ..
 </pre>
 
 </Quiz>
+
+## Interaksi Dengan Program
+
+Dalam menggunakan command line, dipastikan akan ada interaksi dengan program dan perintah-perintah yang ada. Bagian ini akan menjelaskan bagaimana suatu program dijalankan dalam command line.
+
+### Struktur Perintah
+
+Secara umum, struktur perintah adalah
+
+```
+<perintah_atau_program> <argumen_1> <argumen_2> ... <argumen_n>
+```
+
+Di mana `<perintah_atau_program>` dapat berupa perintah bawaan dari PowerShell, atau program yang berada di salah satu folder `PATH`.
+
+Argumen adalah data-data tambahan yang kamu kirim dalam perintah kamu. Dalam contoh `cd` di atas, argumen digunakan untuk menyatakan folder tujuan. Penggunaan argumen dapat berbeda-beda, tergantung pada perintah atau program yang dipanggil.
+
+Berikut contoh-contoh perintah dan pembagian perintah serta argumennya:
+
+| Baris              | Nama Perintah/Program | Argumen      |
+| ------------------ | --------------------- | ------------ |
+| `cd folder`        | `cd`                  | `folder`     |
+| `echo halo dunia`  | `echo`                | `halo dunia` |
+| `mkdir folderbaru` | `mkdir`               | `folderbaru` |
+
+### Perintah Bawaan
+
+Setiap sistem operasi memiliki sejumlah perintah-perintah bawaan yang ada. Untuk Windows, kamu bisa mendapatkan informasi tersebut [di sini](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands). Namun, berikut adalah perintah-perintah yang biasa digunakan:
+
+| Perintah | Fungsi                      | Argumen                                  | Contoh                                                 |
+| -------- | --------------------------- | ---------------------------------------- | ------------------------------------------------------ |
+| `cd`     | Berpindah ke folder lain    | Path menuju folder tujuan                | `cd folder`                                            |
+| `echo`   | Menampilkan pesan           | Pesan yang ingin ditampilkan             | `echo halo`                                            |
+| `cat`    | Menampilkan isi dari file   | Path menuju file                         | `cat file.txt`                                         |
+| `mkdir`  | Membuat folder baru         | Nama folder                              | `mkdir folder`                                         |
+| `ls`     | Menampilkan isi dari folder | Path folder (opsional, _default_ ke cwd) | `ls` (tanpa argumen)<br/> `ls folder` (dengan argumen) |
