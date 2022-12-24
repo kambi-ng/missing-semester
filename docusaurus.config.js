@@ -8,8 +8,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "Missing Semester",
   tagline: "Mengajarkan materi dasar untuk Ilmu Komputer.",
-  url: "https://kambi-ng.github.io",
-  baseUrl: "/missing-semester",
+  url: "https://missing-semester.kambi.ng",
+  baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
