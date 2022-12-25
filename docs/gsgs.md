@@ -33,3 +33,30 @@ Terkadang, _query_ yang kamu buat dapat menghasilkan hal-hal yang diluar dengan 
   Pada contoh angka acak, misalkan kamu ingin membuat algoritma tersebut dalam bahasa pemrograman Python, maka tambahkan `python` di dalam query tersebut.
 - Apabila kamu sudah tau website yang akan kamu inginkan, masukkan ke dalam _query_.
   Sebagai contoh, kamu ingin mengambil library `random` yang ada pada Python untuk keperluan angka acak kamu, kamu dapat menggunakan query `random python docs` agar langsung diarahkan ke dokumentasi Python.
+
+## Mencari Solusi Error
+
+:::tip
+Kamu akan mempelajari lebih lanjut mengenai error pada topik Mengenali Error.
+:::
+
+Selama melakukan pemrograman, kalian pasti akan bertemu dengan error. Apabila terjadi hal tersebut dan kamu ingin mencari tahu mengenai error tersebut, berikut tips yang dapat kamu gunakan:
+
+### Masukkan Kode Error
+
+Setiap kali terdapat error, program terkadang akan memberi tahu kode error. Hal ini dapat membantu untuk memfokuskan error yang sama dengan yang kamu alami, terutama pada program atau kondisi di mana pesan error dapat sama pada berbagai kode error (Windows seringkali melakukan hal ini).
+
+Apabila program tidak memberikan kode error, tidak apa-apa. Kamu harus lebih teliti dalam melihat hasil dari mesin pencari, gunakan solusi yang dirasa memiliki kondisi yang sama denganmu.
+
+### Hapus Informasi Tidak Penting
+
+Suatu error dapat memiliki pesan yang berbeda-beda, namun terkadang beberapa error memiliki informasi yang tidak akan relevan pada hasil pencarian. Tidak hanya itu, informasi yang tidak relevan tersebut bisa saja mengubah makna dari _query_ kamu. Sebagai contoh, perhatikan error berikut:
+
+```
+>>> open("contoh/file.txt", "r")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+FileNotFoundError: [Errno 2] No such file or directory: 'contoh/file.txt'
+```
+
+Kita tahu bahwa pesan errornya ada pada baris terakhir, yaitu `FileNotFoundError: [Errno 2] No such file or directory: 'contoh/file.txt'`. Sehingga kita mencari dengan _query_ tersebut. Namun, terdapat informasi tidak penting, yaitu `'contoh/file.txt'` di mana hal ini merupakan spesifik untuk kode kita. Hal ini dapat memengaruhi hasil pencarian kita, sebab mesin pencari akan mencoba mencari `contoh/file.txt` juga. Oleh karena itu, alangkah baiknya untuk menghapus bagian tersebut, sehingga kamu cukup mencari `FileNotFoundError: [Errno 2] No such file or directory`.
