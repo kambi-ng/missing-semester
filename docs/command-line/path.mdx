@@ -1,0 +1,31 @@
+---
+sidebar_position: 3
+sidebar_label: Command Line Dan Path
+---
+
+import Quiz from "@site/src/components/quiz";
+
+# Command Line Dan Path
+
+Dikala kamu memprogram sesuatu, terkadang kamu ingin melakukan interaksi dengan file-file yang ada di sistem. Untuk itu, kamu perlu mengetahui bagaimana suatu program mencari suatu file dalam konteks command line.
+
+Seperti yang sudah dijelaskan sebelumnya, path memiliki dua cara representasi, yaitu _relative_ dan _absolute_. Selain itu, command line memiliki konsep _current working directory_ yang digunakan untuk melengkapi informasi yang ada pada _relative path_. Kedua hal ini saling bekerja sama dalam jalannya suatu perintah input-output (seperti membuka file). Untuk mengerti hubungan kedua hal tersebut, perhatikan contoh berikut:
+
+Terdapat suatu file _python_ bernama `printer.py` yang berisi sebagai berikut:
+
+```python title="printer.py"
+with open("file.txt", "r") as f:
+    print(f.read())
+```
+
+Program ini membuka file `file.txt`, lalu mencetak isi file tersebut. Kamu dapat menjalankan script tersebut dengan menggunakan perintah `python printer.py`. Saat program mencoba untuk membuka `file.txt`, program akan mencari file tersebut pada cwd dari command line saat ini.
+
+<Quiz answers={["Benar", "Salah"]} correctAnswer={1}>
+  Anggap kondisi command line sedang berada pada <code>D:\</code>. Dan file `sample.txt` berada di `D:\contoh\sample.txt`. Apabila terdapat script Python berikut, lalu dijalankan, apakah script akan error?
+
+```py
+with open("contoh/sample.txt", "r") as f:
+    print(f.read())
+```
+
+</Quiz>
