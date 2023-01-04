@@ -5,7 +5,10 @@ sidebar_label: Mac
 
 # Command Line
 
-:::info
-Apabila kamu mencari materi untuk Windows, materi tersebut [ada di sini](windows).
+:::tip
+Harap membaca [Pengantar Command Line](introduction) jika kamu belum membacanya.
+:::
 
 :::info
+Apabila kamu mencari materi untuk Windows, materi tersebut [ada di sini](windows).
+:::
