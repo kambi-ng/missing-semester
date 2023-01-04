@@ -23,3 +23,8 @@ Saat melakukan hal yang berkaitkan dengan command line, dua terminologi biasa mu
 - Shell  
   Shell adalah program yang memproses, menjalankan, dan menampilkan hasil dari perintah-perintah yang diberikan.  
   Contoh: Powershell (Windows 11), `cmd` (Windows 10 dan sebelumnya), `zsh` (Mac dan Linux), `bash` (Mac dan Linux)
+
+## Resources
+
+- [Wikipedia/Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface)
+- [GeeksForGeeks/Difference between Terminal, Console, Shell, and Command Line](https://www.geeksforgeeks.org/difference-between-terminal-console-shell-and-command-line/)
