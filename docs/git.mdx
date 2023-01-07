@@ -1,0 +1,174 @@
+---
+sidebar_position: 5
+title: 4. Menggunakan Git
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+# Git
+
+<center>
+  <iframe
+    width="560"
+    height="315"
+    src="https://www.youtube-nocookie.com/embed/2sjqTHE0zok"
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+</center>
+
+## Version Control System (VCS)
+
+Version Control System adalah program-program yang digunakan untuk mendeteksi perubahan dari source code. Tidak hanya itu, VCS juga digunakan untuk kolaborasi. VCS mendeteksi perubahan dari folder dan isinya dengan snapshot-snapshot yang tersimpan, di mana setiap snapshot menyimpan kondisi folder/file yang ada. Tidak hanya itu, setiap snapshot juga memiliki metadata yang berisi kapan snapshot itu dibuat, pesan yang terkait, dan lain-lain.
+
+VCS berguna tidak hanya untuk mengakomodasi kolaborasi, namun juga dapat membantu melakukan perubahan yang terkait dengan snapshot, seperti mengembalikan kondisi source code ke suatu snapshot.
+
+Terdapat berbagai macam program VCS, seperti `svn`, Mercurial, dan `git`. Namun, `git` merupakan VCS yang paling populer digunakan.
+
+## Konsep Git
+
+<center>
+  <img src="https://imgs.xkcd.com/comics/git.png" />
+</center>
+<center>
+  <a href="https://xkcd.com/1597">xkcd 1597: Git</a>
+</center>
+
+Seperti yang dapat dilihat dalam komik xkcd tersebut, git memiliki konsep yang sangat keren, namun memiliki interface yang tidak ramah bagi kebanyakan pengguna (terutama pemula). Untuk itu, materi ini akan memberikan informasi mengenai konsep-konsep yang ada di git, sehingga kamu diharapkan agar lebih mudah mengerti interface yang ada.
+
+:::info
+Banyak informasi di sini yang disimplifikasi, meskipun tidak merepresentasikan apa yang dilakukan `git` secara akurat, informasi yang diberikan diharapkan tetap memberi gambaran besar mengenai konsep-konsep yang ada di git.
+:::
+
+### Repository
+
+Suatu repository adalah tempat penyimpanan virtual yang menyimpan segala hal mengenai proyek yang dibuat. Konsep yang dimiliki mirip seperti folder, namun suatu repository dapat menyimpan snapshot-snapshot dari perubahan yang dilakukan, serta metadata yang diikuti.
+
+Repository dapat berada di lokal dan juga remote. Repository lokal adalah repository yang berada di dalam komputer kamu, sedangkan repository remote adalah repository yang berada di service git yang ada di internet, seperti GitHub atau Gitlab.
+
+### Branch
+
+Seperti dengan namanya, suatu branch adalah "cabang" dari repository tersebut. Artinya, suatu repository dapat memiliki versi-versi yang berbeda. Branch membantu dalam mengorganisasikan pekerjaan dengan melakukan pekerjaan tersebut di tempat yang berbeda tanpa menyentuh versi utamanya. Suatu branch juga dapat "menimpa" perubahan-perubahan dari branch lain, sehingga perubahan yang ada di branch lain dapat juga dimasukkan ke dalam branch yang sedang dipakai.
+
+Sebagai contoh, kamu sedang membuat website bersama teman-temanmu. Kamu ingin membuat suatu fitur, sehingga kamu membuat branch baru agar orang lain tidak terganggu dengan perubahan-perubahan kamu. Setelah selesai, kamu "menimpa" branch kamu ke branch utama, sehingga fitur kamu dirilis.
+
+### Commit
+
+Commit adalah snapshot dari suatu perubahan yang terjadi di suatu branch. Commit tidak hanya menyimpan snapshot dari file yang berubah, namun juga metadata yang terkait dengan commit tersebut, seperti siapa yang membuat commit tersebut, kapan waktu commit tersebut dibuat, dan lain-lain.
+
+Pada sistem git, suatu commit terkait dengan commit-commit lainnya, sehingga sistem yang digunakan git adalah "relasi dari commit". Hal ini membuat git menjadi fleksibel untuk melakukan kolaborasi dengan banyak branch, hingga melakukan undo dari suatu commit.
+
+## Menggunakan Git
+
+Setelah kamu mengenal konsep-konsep penting git, kamu akan mempelajari bagaimana cara menggunakan git secara langsung. Karena banyak sekali perintah yang ada di git, tidak semua perintah akan dipelajari dalam materi ini. Materi ini hanya akan menginformasikan kamu perintah-perintah dasar yang selalu dipakai dalam pengoperasian git.
+
+Jika kamu ingin mempelajari lebih lanjut, kamu bisa membaca [Pro Git Book](https://git-scm.com/book/en/v2/).
+
+### Repository
+
+#### Inisialisasi
+
+Dalam git, kamu dapat menginisialisasikan suatu repository git dengan dua cara:
+
+1. Membuat suatu folder menjadi git repository
+2. Melakukan `clone` suatu repository dari tempat lain (seperti internet)
+
+##### Inisialisasi Folder
+
+Apabila kamu ingin mengubah suatu folder menjadi suatu repository git, seperti membuat baru, maka kamu harus memindahkan command line kamu ke folder proyek tersebut. Lalu melakukan init di folder tersebut dengan `git init`.
+
+<Tabs groupId="operating-systems">
+  <TabItem value="win" label="Windows">
+Perintah yang dilakukan adalah seperti berikut:
+
+```
+PS C:\Users\User> cd C:\lokasi\ke\proyek
+PS C:\lokasi\ke\proyek> git init
+```
+
+  </TabItem>
+  <TabItem value="mac" label="Linux/macOS">
+Perintah yang dilakukan adalah seperti berikut:
+
+```
+$ cd /home/user/lokasi/ke/proyek
+$ git init
+```
+
+</TabItem>
+</Tabs>
+
+Ini akan membuat suatu folder bernama `.git` di dalam folder tersebut. Folder ini digunakan git untuk melakukan kepengurusan repository kamu. **Jangan hapus folder ini**. Jika kamu menghapus folder ini, sama saja kamu menghapus hubungan git dengan folder tersebut.
+
+##### Clone Repository
+
+Apabila kamu ingin mengunduh dan melakukan inisialisasi repository yang ada di tempat lain (seperti GitHub), kamu bisa mendapatkan link atau path ke repository git tersebut, dan menggunakan perintah `git clone` seperti berikut:
+
+```
+$ git clone git@github.com:kambi-ng/missing-semester.git
+# atau
+$ git clone https://github.com/kambi-ng/missing-semester.git
+```
+
+Kamu juga bisa memberi argumen lokasi di mana repository akan disimpan. Jika tidak ada argumen tersebut, maka nama repository akan digunakan sebagai path tujuan. Dalam kasus ini, akan dibuat folder baru bernama `missing-semester` yang berisi repository git dari website ini.
+
+#### Commit
+
+Untuk membuat suatu commit, kamu harus memberi tahu git file atau folder apa saja yang ingin kamu update. Kamu bisa melakukan hal ini dengan perintah `git add`. Kamu juga bisa menambahkan semua yang ada di dalam repository dengan flag `-A`.
+
+```
+$ git add README.md
+$ git add main.py
+$ git add foo/
+$ git add -A
+```
+
+:::tip
+Kamu bisa melihat status dari repository kamu (file apa saja yang sudah di-stage, apa yang belum, dan lain-lain) dengan menggunakan perintah `git status`.
+
+```
+$ git status
+On branch master
+Your branch is up-to-date with 'origin/main'.
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+    README
+
+nothing added to commit but untracked files present (use "git add" to track)
+```
+
+:::
+
+:::warning
+Apabila kamu memindahkan/rename suatu file/folder, kamu harus memberi tahu git untuk menghapus file/folder tersebut untuk didelete juga di git menggunakan perintah `git rm`.
+
+Contoh saat melakukan rename file `README.md` menjadi `README`:
+
+```
+$ mv README.md README
+$ git rm README.md
+$ git add README
+```
+
+:::
+
+Setelah itu, kamu bisa menggunakan perintah `git commit -m "pesan commit"` (ubah pesan commit sesuai dengan perubahan yang kamu lakukan) untuk melakukan commit. Kamu juga bisa menghapus semua argumen, ini akan memunculkan editor kamu untuk melakukan edit pesan. Tidak disarankan apabila kamu tidak pernah menggunakan editor berbasis command line seperti `vim` atau `nano`.
+
+#### Push
+
+### Branching
+
+#### Membuat Baru
+
+#### Push
+
+#### Merge
+
+## Resources
+
+- [Git Book](https://git-scm.com/book/en/v2/)
+- [Missing Semester/Version Control (Git)](https://missing.csail.mit.edu/2020/version-control/)
