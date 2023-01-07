@@ -72,5 +72,5 @@ Pada sistem git, suatu commit terkait dengan commit-commit lainnya, sehingga sis
 
 ## Resources
 
-- [Git Book/What is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
+- [Git Book](https://git-scm.com/book/en/v2/)
 - [Missing Semester/Version Control (Git)](https://missing.csail.mit.edu/2020/version-control/)
