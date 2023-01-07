@@ -34,9 +34,21 @@ Banyak informasi di sini yang disimplifikasi, meskipun tidak merepresentasikan a
 
 ### Repository
 
-### Commit
+Suatu repository adalah tempat penyimpanan virtual yang menyimpan segala hal mengenai proyek yang dibuat. Konsep yang dimiliki mirip seperti folder, namun suatu repository dapat menyimpan snapshot-snapshot dari perubahan yang dilakukan, serta metadata yang diikuti.
+
+Repository dapat berada di lokal dan juga remote. Repository lokal adalah repository yang berada di dalam komputer kalian, sedangkan repository remote adalah repository yang berada di service git yang ada di internet, seperti GitHub atau Gitlab.
 
 ### Branch
+
+Seperti dengan namanya, suatu branch adalah "cabang" dari repository tersebut. Artinya, suatu repository dapat memiliki versi-versi yang berbeda. Branch membantu dalam mengorganisasikan pekerjaan dengan melakukan pekerjaan tersebut di tempat yang berbeda tanpa menyentuh versi utamanya. Suatu branch juga dapat "menimpa" perubahan-perubahan dari branch lain, sehingga perubahan yang ada di branch lain dapat juga dimasukkan ke dalam branch yang sedang dipakai.
+
+Sebagai contoh, kamu sedang membuat website bersama teman-temanmu. Kamu ingin membuat suatu fitur, sehingga kamu membuat branch baru agar orang lain tidak terganggu dengan perubahan-perubahan kamu. Setelah selesai, kamu "menimpa" branch kamu ke branch utama, sehingga fitur kamu dirilis.
+
+### Commit
+
+Commit adalah snapshot dari suatu perubahan yang terjadi di suatu branch. Commit tidak hanya menyimpan snapshot dari file yang berubah, namun juga metadata yang terkait dengan commit tersebut, seperti siapa yang membuat commit tersebut, kapan waktu commit tersebut dibuat, dan lain-lain.
+
+Pada sistem git, suatu commit terkait dengan commit-commit lainnya, sehingga sistem yang digunakan git adalah "relasi dari commit". Hal ini membuat git menjadi fleksibel untuk melakukan kolaborasi dengan banyak branch, hingga melakukan undo dari suatu commit.
 
 ## Menggunakan Git
 
@@ -57,3 +69,8 @@ Banyak informasi di sini yang disimplifikasi, meskipun tidak merepresentasikan a
 #### Push
 
 #### Merge
+
+## Resources
+
+- [Git Book/What is Git?](https://git-scm.com/book/en/v2/Getting-Started-What-is-Git%3F)
+- [Missing Semester/Version Control (Git)](https://missing.csail.mit.edu/2020/version-control/)
