@@ -5,6 +5,8 @@ title: 4. Menggunakan Git
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
+import GraphGitURL from "./assets/graphgitmerge.mp4";
+import ReactPlayer from "react-player";
 
 # Git
 
@@ -213,11 +215,34 @@ Untuk mempertajam pemahaman, kamu dapat melakukan tutorial ini menggunakan akun 
 
 ### Branching
 
-#### Membuat Baru
+#### Mengganti
 
-#### Push
+Untuk mengganti atau membuat sebuah branch baru, kamu dapat menggunakan perintah `git checkout <branch>`. Apabila branch tersebut tidak ada, kamu harus memberikan flag `-b` sebelum argumen nama branch. Sebagai contoh, kamu ingin membuat ke branch `chat` untuk mengembangkan fitur chat, kamu dapat menggunakan perintah berikut:
+
+```
+$ git checkout -b chat
+```
+
+Setelah pembuatan branch awal, jika kamu ingin mengganti branch ke chat lagi, kamu cukup menggunakan perintah berikut:
+
+```
+$ git checkout chat
+```
+
+Setelah kamu merubah branch, semua commit yang akan dibuat akan disimpan dalam branch ini.
 
 #### Merge
+
+Anggap kamu sudah selesai dalam mengembangkan fitur chat dan sudah siap untuk dirilis yang berada di branch `main`. Untuk melakukan itu, kamu akan melakukan merge branch `chat` menuju branch `main`. Kamu hanya perlu mengubah branch kamu ke branch yang dituju dan menjalankan perintah `git merge` seperti berikut:
+
+```
+$ git checkout main
+$ git merge chat
+```
+
+Setelah melakukan merge, semua commit dan perubahan yang ada di branch chat akan tersedia juga di branch `main`. Berikut visualisasi yang dapat membantu pemahaman kamu mengenai branch dan merge:
+
+<ReactPlayer controls url={GraphGitURL} width="100%" height="100%" />
 
 ## Resources
 
