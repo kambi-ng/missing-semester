@@ -53,6 +53,8 @@ Repository dapat berada di lokal dan juga remote. Repository lokal adalah reposi
 
 Seperti dengan namanya, suatu branch adalah "cabang" dari repository tersebut. Artinya, suatu repository dapat memiliki versi-versi yang berbeda. Branch membantu dalam mengorganisasikan pekerjaan dengan melakukan pekerjaan tersebut di tempat yang berbeda tanpa menyentuh versi utamanya. Suatu branch juga dapat "menimpa" perubahan-perubahan dari branch lain, sehingga perubahan yang ada di branch lain dapat juga dimasukkan ke dalam branch yang sedang dipakai.
 
+Setiap repository pasti memiliki satu branch, secara default, branch awal yaitu `main` (atau `master`).
+
 Sebagai contoh, kamu sedang membuat website bersama teman-temanmu. Kamu ingin membuat suatu fitur, sehingga kamu membuat branch baru agar orang lain tidak terganggu dengan perubahan-perubahan kamu. Setelah selesai, kamu "menimpa" branch kamu ke branch utama, sehingga fitur kamu dirilis.
 
 ### Commit
@@ -131,7 +133,7 @@ Kamu bisa melihat status dari repository kamu (file apa saja yang sudah di-stage
 
 ```
 $ git status
-On branch master
+On branch main
 Your branch is up-to-date with 'origin/main'.
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
@@ -158,7 +160,56 @@ $ git add README
 
 Setelah itu, kamu bisa menggunakan perintah `git commit -m "pesan commit"` (ubah pesan commit sesuai dengan perubahan yang kamu lakukan) untuk melakukan commit. Kamu juga bisa menghapus semua argumen, ini akan memunculkan editor kamu untuk melakukan edit pesan. Tidak disarankan apabila kamu tidak pernah menggunakan editor berbasis command line seperti `vim` atau `nano`.
 
-#### Push
+#### Push dan Pull
+
+Setelah kamu melakukan perubahan dan menyimpan perubahan tersebut ke dalam repository git, kamu mungkin ingin menyimpan repository tersebut di tempat lain, seperti GitHub. Untuk itu, kamu harus melakukan setting remote terlebih dahulu, agar git tahu tujuan penyimpanannya.
+
+:::tip
+Apabila kamu mendapatkan repository menggunakan clone, maka kamu tidak perlu melakukan setting remote.
+:::
+
+Untuk melihat remote-remote yang sudah ada, kamu bisa menggunakan perintah `git remove -v`.
+
+```
+$ git remote -v
+origin	https://github.com/schacon/ticgit (fetch)
+origin	https://github.com/schacon/ticgit (push)
+```
+
+Untuk menambahkan remote, kamu dapat menggunakan perintah `git remote add <nama> <link>`. Pada umumnya, kamu akan menggunakan nama `origin` untuk repository yang ada di internet.
+
+```
+$ git remote add origin https://github.com/paulboone/ticgit
+$ git remote -v
+origin	https://github.com/paulboone/ticgit (fetch)
+origin	https://github.com/paulboone/ticgit (push)
+```
+
+Setelah kamu melakukan set remote, kamu bisa menggunakan perintah `git push <nama_remote> <branch>` untuk meng-upload perubahan ke remote repository, dan `git pull` untuk menarik perubahan dari remote repository.
+
+```
+$ git push origin main
+$ git pull
+```
+
+### Tutorial
+
+Untuk mempertajam pemahaman, kamu dapat melakukan tutorial ini menggunakan akun GitHub kamu.
+
+1. Buat sebuah folder, lalu `cd` ke folder tersebut di command line
+2. Lakukan init repository dengan perintah `git init`
+3. Buat file bernama `README.md` yang berisikan "Halo git!"
+4. Tambahkan file tersebut ke tracking git dengan perintah `git add README.md`
+5. Ganti nama file tersebut menjadi `README`
+6. Commit perubahan kamu dengan perintah `git commit -m "Membuat README"`
+7. Cek status yang ada di git dengan perintah `git status` (Ingat pula nama branchnya!)
+8. Ubah tracking git dari file `README` menggunakan perintah `git rm README.md` dan `git add README`
+9. Buat commit baru dengan perintah `git commit -m "Mengganti nama README"`
+10. Buat sebuah repository di GitHub dengan nama bebas (kamu tidak perlu mengganti setting apapun)
+11. Simpan link repository yang ada di bagian atas halaman  
+    ![](https://d.rorre.xyz/Io4x6zdSR/chrome_2SUlzQuWU8.png)
+12. Buat remote baru bernama `origin` dengan link yang kamu simpan. `git remote add origin <LINK>`
+13. Push ke git menggunakan perintah `git push -u origin <branch>`
 
 ### Branching
 
