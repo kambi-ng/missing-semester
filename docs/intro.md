@@ -21,8 +21,8 @@ memutuhkan alat tersebut.
 0. Pengantar
 1. Bagaimana Cara GSGS
 2. Konsep Filesystem
-3. Menggunakan Command Line
-4. Menggungkan Git
+3. Command Line
+4. Git
 5. Mengenali Error
 6. Membaca Dokumentasi
 
