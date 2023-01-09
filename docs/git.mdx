@@ -65,6 +65,37 @@ Commit adalah snapshot dari suatu perubahan yang terjadi di suatu branch. Commit
 
 Pada sistem git, suatu commit terkait dengan commit-commit lainnya, sehingga sistem yang digunakan git adalah "relasi dari commit". Hal ini membuat git menjadi fleksibel untuk melakukan kolaborasi dengan banyak branch, hingga melakukan undo dari suatu commit.
 
+## Instalasi Git (+ GitHub)
+
+:::warning Setup tambahan untuk pengguna macOS
+Untuk menginstal git, diperlukan perintah `brew`. Kamu dapat menginstal Homebrew [di sini](https://brew.sh/).
+:::
+
+1. [Unduh dan instal git](https://git-scm.com/downloads)
+2. Buat sebuah akun di [GitHub](https://github.com)
+3. [Unduh dan instal GitHub CLI](https://cli.github.com/)
+4. Buka terminal (cmd, Windows Terminal, Terminal, atau sejenis)
+5. Set up configurasi git menggunakan perintah berikut: (ganti apapun yang disekitari `<>`)
+
+```
+$ git config --global user.name "<NAMA_KAMU>"
+$ git config --global user.email "<EMAIL_KAMU>"
+$ git config pull.ff true
+```
+
+6. Set up git dan GitHub dengan perintah `gh auth login` dan ikuti instruksinya
+
+```
+$ gh auth login
+? What account do you want to log into? Pilih [GitHub.com]
+? What is your preferred protocol for Git operations? Pilih [HTTPS]
+? Authenticate Git with your GitHub credentials? Pilih [Yes]
+? How would you like to authenticate GitHub CLI? Pilih [Login with a web browser]
+
+! First copy your one-time code: [Kode 8 karakter, catat]
+Press Enter to open github.com in your browser... [Tekan enter, lalu isi dengan kode di atas]
+```
+
 ## Menggunakan Git
 
 Setelah kamu mengenal konsep-konsep penting git, kamu akan mempelajari bagaimana cara menggunakan git secara langsung. Karena banyak sekali perintah yang ada di git, tidak semua perintah akan dipelajari dalam materi ini. Materi ini hanya akan menginformasikan kamu perintah-perintah dasar yang selalu dipakai dalam pengoperasian git.
