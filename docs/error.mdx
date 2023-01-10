@@ -1,0 +1,182 @@
+---
+sidebar_position: 6
+title: 5. Mengenali Error
+---
+
+# Error
+
+<center>
+  <img src="https://imgs.xkcd.com/comics/unreachable_state.png" />
+</center>
+
+Salah satu hal yang sering ditemui selama menjadi mahasiswa Ilmu Komputer (atau bahkan cukup menggunakan komputer) adalah error. Error dapat terjadi karena banyak hal, namun pada umumnya terjadi karena terdapat suatu hal yang tidak terduga atau diinginkan. Hal ini dapat terjadi dalam program yang biasa kita gunakan, atau saat kita melakukan pemrograman. Topik ini akan menginformasikan kamu bagaimana cara merespons error-error tersebut.
+
+## Mengidentifikasi Error
+
+<center>
+  <img src="https://imgs.xkcd.com/comics/error_code.png" />
+</center>
+
+:::note
+Topik ini mengasumsikan program memberikan pesan error. Terdapat banyak kasus di mana hal ini tidak terjadi, seperti program yang dicompile dari bahasa C, yang hanya mengeluarkan pesan `Segmentation fault`. Dalam kasus tersebut, teknik yang digunakan sudah berubah dengan melakukan debugging.
+:::
+
+Saat suatu error terjadi, program akan memberikan suatu pesan yang menjelaskan bahwa terjadi suatu error. Pesan yang diberikan dapat bervariasi, namun pada umumnya memiliki komponen berikut:
+
+1. Pesan error (Contoh: "An error has occured")
+2. Detail error
+3. Kode error
+
+Suatu program dapat saja tidak memiliki detail ataupun kode error, atau bahkan tidak memiliki keduanya. Tidak hanya itu, suatu program dapat saja tidak melakukan proteksi terhadap error, sehingga akan tertutup atau hang.
+
+Pada umumnya, kamu ingin tahu detail suatu error, terutama dalam konteks pemroragaman. Sehingga kamu lebih baik memperhatikan kode dan detail dari error tersebut, dibandingkan pesan yang tidak memberikan kamu petunjuk. Sebagai contoh, pesan error yang berisi "Tidak dapat terkoneksi ke internet" lebih memberi banyak informasi daripada "Telah terjadi error". Oleh karena itu, **pilah pesan-pesan yang muncul dan fokus terhadap pesan yang memberi kamu petunjuk terbaik**.
+
+Berikut adalah contoh kode Python yang mencoba untuk meng-import modul yang tidak ada:
+
+```
+>>> import asdkjh
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ModuleNotFoundError: No module named 'asdkjh'
+```
+
+Dalam kasus ini, kamu cukup fokus terhadap pesan dan kode error yang diberikan, yaitu:
+
+```
+ModuleNotFoundError: No module named 'asdkjh'
+```
+
+## Membaca Stack Trace
+
+_atau traceback, backtrace, dan sejenisnya_
+
+Jika kamu sedang melakukan pemrograman dan terjadi error, program biasanya akan memberi kamu stack trace. Stack trace adalah rekaman jejak dari fungsi-fungsi yang dipanggil hingga terjadi error. Contoh dari stack trace dapat dilihat sebagai berikut:
+
+- Python
+
+```py title="file.py" showLineNumbers
+def foo():
+    return bar()
+
+def bar():
+    hello
+
+foo()
+```
+
+```
+Traceback (most recent call last):
+  File "file.py", line 7, in <module>
+    foo()
+  File "file.py", line 2, in foo
+    return bar()
+  File "file.py", line 5, in bar
+    hello
+NameError: name 'hello' is not defined
+```
+
+- Java
+
+```java title="MainClass.java" showLineNumbers
+public class MainClass {
+    public static void main(String args[]) {
+      foo();
+    }
+
+    public static void foo() {
+        bar();
+    }
+
+    public static void bar() {
+        throw new RuntimeException("Error here");
+    }
+}
+```
+
+```
+Exception in thread "main" java.lang.RuntimeException: Error here
+	at MainClass.bar(MainClass.java:11)
+	at MainClass.foo(MainClass.java:7)
+	at MainClass.main(MainClass.java:3)
+```
+
+Tentu saja, stack trace dapat terlihat menyeramkan semakin besar program yang kalian buat. Namun, terdapat beberapa hal penting yang perlu kamu lakukan agar kamu dapat menentukan titik di mana program kamu error:
+
+1. Perhatikan alur penulisan dari stack trace.  
+   Sebagai contoh, di Python penulisan stack trace bersifat semakin ke bawah, semakin dekat dengan apa yang mengeluarkan error. Sebaliknya dengan java, semakin ke atas, semakin dekat dengan apa yang mengeluarkan error. Hal ini berguna untuk mempercepat menentukan titik di mana error itu terjadi.
+
+   Tidak hanya itu, perlu diperhatikan bagaimana format penulisan dari stack trace, ini berguna agar kamu tahu hingga ke baris berapa yang menyebabkan error tersebut.
+
+2. Hanya perhatikan bagian yang relevan dengan kodemu.  
+   Sebagai contoh, kamu ingin membuat request ke suatu website yang tidak ada menggunakan Python, dan kamu mendapat stack trace seperti berikut:
+
+```
+Traceback (most recent call last):
+  File "...\3.10.4\lib\urllib\request.py", line 1348, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "...\3.10.4\lib\http\client.py", line 1282, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "...\3.10.4\lib\http\client.py", line 1328, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "...\3.10.4\lib\http\client.py", line 1277, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "...\3.10.4\lib\http\client.py", line 1037, in _send_output
+    self.send(msg)
+  File "...\3.10.4\lib\http\client.py", line 975, in send
+    self.connect()
+  File "...\3.10.4\lib\http\client.py", line 1447, in connect
+    super().connect()
+  File "...\3.10.4\lib\http\client.py", line 941, in connect
+    self.sock = self._create_connection(
+  File "...\3.10.4\lib\socket.py", line 824, in create_connection
+    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+  File "...\3.10.4\lib\socket.py", line 955, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "file.py", line 2, in <module>
+    urllib.request.urlopen("https://askjdhieqf.com")
+  File "...\3.10.4\lib\urllib\request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+  File "...\3.10.4\lib\urllib\request.py", line 519, in open
+    response = self._open(req, data)
+  File "...\3.10.4\lib\urllib\request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+  File "...\3.10.4\lib\urllib\request.py", line 496, in _call_chain
+    result = func(*args)
+  File "...\3.10.4\lib\urllib\request.py", line 1391, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+  File "...\3.10.4\lib\urllib\request.py", line 1351, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+```
+
+Tentu saja stack trace ini sangat membingungkan. Oleh karena itu, mari kita coba hapus baris-baris yang bukan merupakan bagian dari kode kita, namun tetap menyimpan detail error yang penting.
+
+```
+Traceback (most recent call last):
+  ...
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "file.py", line 2, in <module>
+    urllib.request.urlopen("https://askjdhieqf.com")
+  ...
+urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+
+```
+
+Ternyata, file `file.py`, baris kedua dengan isi `urllib.request.urlopen("https://askjdhieqf.com")` menghasilkan error tersebut! Namun, kita tidak tahu mengapa error tersebut terjadi. Oleh karena itu, mari kita coba cari di Google mengenai pesan error (`[Errno 11001] getaddrinfo failed`) tersebut.
+
+Setelah melakukan pencarian, kita tahu bahwa ternyata error tersebut terjadi karena hostname tidak dapat ditemukan. Ini masuk akal sebab website `https://askjdhieqf.com` tidak ada di internet.
+
+## Mencari Solusi
+
+<center>
+  <img src="https://imgs.xkcd.com/comics/tech_support_cheat_sheet.png" />
+</center>
