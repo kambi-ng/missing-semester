@@ -19,7 +19,7 @@ memutuhkan alat tersebut.
 ## Topik
 
 0. Pengantar
-1. Bagaimana Cara GSGS
+1. Mesin Pencari
 2. Konsep Filesystem
 3. Command Line
 4. Git
