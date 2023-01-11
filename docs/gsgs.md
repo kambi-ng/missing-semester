@@ -36,8 +36,15 @@ Terkadang, _query_ yang kamu buat dapat menghasilkan hal-hal yang diluar dengan 
 
 ## Mencari Solusi Error
 
+<center>
+  <img src="https://imgs.xkcd.com/comics/tech_support_cheat_sheet.png" />
+</center>
+<center>
+  <a href="https://xkcd.com/627">xkcd 1024: Tech Support Cheat Sheet</a>
+</center>
+
 :::tip
-Kamu akan mempelajari lebih lanjut mengenai error pada topik Mengenali Error.
+Kamu akan mempelajari lebih lanjut mengenai error pada topik [Mengenali Error](/error).
 :::
 
 Selama melakukan pemrograman, kalian pasti akan bertemu dengan error. Apabila terjadi hal tersebut dan kamu ingin mencari tahu mengenai error tersebut, berikut tips yang dapat kamu gunakan:
