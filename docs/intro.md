@@ -28,7 +28,12 @@ memutuhkan alat tersebut.
 
 ## Mengenai Proyek
 
-Proyek "Missing Semester" di-_maintain_ oleh anggota dari Kambing.
+Proyek "Missing Semester" di-_maintain_ oleh anggota dari [Kambi-ng](https://github.com/kambi-ng). Proyek ini menggunakan
+sistem dokumentasi [Docusaurus](https://docusaurus.io), dan kode sumber dari proyek ini ada di
+[repository github kami](https://github.com/kambi-ng/missing-semester).
+
+Materi memiliki lisensi [CC BY-NC-SA](http://creativecommons.org/licenses/by-nc-sa/4.0/), sedangkan kode yang terkait
+dengan proyek memiliki MIT License.
 
 ## Acknowledgement
 
