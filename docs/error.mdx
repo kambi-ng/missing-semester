@@ -8,6 +8,9 @@ title: 5. Mengenali Error
 <center>
   <img src="https://imgs.xkcd.com/comics/unreachable_state.png" />
 </center>
+<center>
+  <a href="https://xkcd.com/2200">xkcd 2200: Unreachable State</a>
+</center>
 
 Salah satu hal yang sering ditemui selama menjadi mahasiswa Ilmu Komputer (atau bahkan cukup menggunakan komputer) adalah error. Error dapat terjadi karena banyak hal, namun pada umumnya terjadi karena terdapat suatu hal yang tidak terduga atau diinginkan. Hal ini dapat terjadi dalam program yang biasa kita gunakan, atau saat kita melakukan pemrograman. Topik ini akan menginformasikan kamu bagaimana cara merespons error-error tersebut.
 
@@ -15,6 +18,9 @@ Salah satu hal yang sering ditemui selama menjadi mahasiswa Ilmu Komputer (atau 
 
 <center>
   <img src="https://imgs.xkcd.com/comics/error_code.png" />
+</center>
+<center>
+  <a href="https://xkcd.com/1024">xkcd 1024: Error Code</a>
 </center>
 
 :::note
@@ -54,51 +60,51 @@ Jika kamu sedang melakukan pemrograman dan terjadi error, program biasanya akan 
 
 - Python
 
-```py title="file.py" showLineNumbers
-def foo():
-    return bar()
+  ```py title="foobar.py" showLineNumbers
+  def foo():
+      return bar()
 
-def bar():
-    hello
+  def bar():
+      hello
 
-foo()
-```
+  foo()
+  ```
 
-```
-Traceback (most recent call last):
-  File "file.py", line 7, in <module>
-    foo()
-  File "file.py", line 2, in foo
-    return bar()
-  File "file.py", line 5, in bar
-    hello
-NameError: name 'hello' is not defined
-```
+  ```
+  Traceback (most recent call last):
+    File "foobar.py", line 7, in <module>
+      foo()
+    File "foobar.py", line 2, in foo
+      return bar()
+    File "foobar.py", line 5, in bar
+      hello
+  NameError: name 'hello' is not defined
+  ```
 
 - Java
 
-```java title="MainClass.java" showLineNumbers
-public class MainClass {
-    public static void main(String args[]) {
-      foo();
-    }
+  ```java title="MainClass.java" showLineNumbers
+  public class MainClass {
+      public static void main(String args[]) {
+        foo();
+      }
 
-    public static void foo() {
-        bar();
-    }
+      public static void foo() {
+          bar();
+      }
 
-    public static void bar() {
-        throw new RuntimeException("Error here");
-    }
-}
-```
+      public static void bar() {
+          throw new RuntimeException("Error here");
+      }
+  }
+  ```
 
-```
-Exception in thread "main" java.lang.RuntimeException: Error here
-	at MainClass.bar(MainClass.java:11)
-	at MainClass.foo(MainClass.java:7)
-	at MainClass.main(MainClass.java:3)
-```
+  ```
+  Exception in thread "main" java.lang.RuntimeException: Error here
+    at MainClass.bar(MainClass.java:11)
+    at MainClass.foo(MainClass.java:7)
+    at MainClass.main(MainClass.java:3)
+  ```
 
 Tentu saja, stack trace dapat terlihat menyeramkan semakin besar program yang kalian buat. Namun, terdapat beberapa hal penting yang perlu kamu lakukan agar kamu dapat menentukan titik di mana program kamu error:
 
@@ -108,75 +114,110 @@ Tentu saja, stack trace dapat terlihat menyeramkan semakin besar program yang ka
    Tidak hanya itu, perlu diperhatikan bagaimana format penulisan dari stack trace, ini berguna agar kamu tahu hingga ke baris berapa yang menyebabkan error tersebut.
 
 2. Hanya perhatikan bagian yang relevan dengan kodemu.  
-   Sebagai contoh, kamu ingin membuat request ke suatu website yang tidak ada menggunakan Python, dan kamu mendapat stack trace seperti berikut:
+   Secara umum, kamu hanya ingin melihat stack trace yang berasal dari kodemu. Artinya, kamu tidak perlu memerhatikan trace dari library, sehingga kamu dapat abaikan dan mendapat stack trace yang jauh lebih kecil.
 
-```
-Traceback (most recent call last):
-  File "...\3.10.4\lib\urllib\request.py", line 1348, in do_open
-    h.request(req.get_method(), req.selector, req.data, headers,
-  File "...\3.10.4\lib\http\client.py", line 1282, in request
-    self._send_request(method, url, body, headers, encode_chunked)
-  File "...\3.10.4\lib\http\client.py", line 1328, in _send_request
-    self.endheaders(body, encode_chunked=encode_chunked)
-  File "...\3.10.4\lib\http\client.py", line 1277, in endheaders
-    self._send_output(message_body, encode_chunked=encode_chunked)
-  File "...\3.10.4\lib\http\client.py", line 1037, in _send_output
-    self.send(msg)
-  File "...\3.10.4\lib\http\client.py", line 975, in send
-    self.connect()
-  File "...\3.10.4\lib\http\client.py", line 1447, in connect
-    super().connect()
-  File "...\3.10.4\lib\http\client.py", line 941, in connect
-    self.sock = self._create_connection(
-  File "...\3.10.4\lib\socket.py", line 824, in create_connection
-    for res in getaddrinfo(host, port, 0, SOCK_STREAM):
-  File "...\3.10.4\lib\socket.py", line 955, in getaddrinfo
-    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
-socket.gaierror: [Errno 11001] getaddrinfo failed
+   Sebagai contoh, kamu ingin membuat request ke suatu website menggunakan Python, dan kamu mendapat stack trace seperti berikut:
 
-During handling of the above exception, another exception occurred:
+   ```
+   Traceback (most recent call last):
+     File "...\3.10.4\lib\urllib\request.py", line 1348, in do_open
+       h.request(req.get_method(), req.selector, req.data, headers,
+     File "...\3.10.4\lib\http\client.py", line 1282, in request
+       self._send_request(method, url, body, headers, encode_chunked)
+     File "...\3.10.4\lib\http\client.py", line 1328, in _send_request
+       self.endheaders(body, encode_chunked=encode_chunked)
+     File "...\3.10.4\lib\http\client.py", line 1277, in endheaders
+       self._send_output(message_body, encode_chunked=encode_chunked)
+     File "...\3.10.4\lib\http\client.py", line 1037, in _send_output
+       self.send(msg)
+     File "...\3.10.4\lib\http\client.py", line 975, in send
+       self.connect()
+     File "...\3.10.4\lib\http\client.py", line 1447, in connect
+       super().connect()
+     File "...\3.10.4\lib\http\client.py", line 941, in connect
+       self.sock = self._create_connection(
+     File "...\3.10.4\lib\socket.py", line 824, in create_connection
+       for res in getaddrinfo(host, port, 0, SOCK_STREAM):
+     File "...\3.10.4\lib\socket.py", line 955, in getaddrinfo
+       for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+   socket.gaierror: [Errno 11001] getaddrinfo failed
 
-Traceback (most recent call last):
-  File "file.py", line 2, in <module>
-    urllib.request.urlopen("https://askjdhieqf.com")
-  File "...\3.10.4\lib\urllib\request.py", line 216, in urlopen
-    return opener.open(url, data, timeout)
-  File "...\3.10.4\lib\urllib\request.py", line 519, in open
-    response = self._open(req, data)
-  File "...\3.10.4\lib\urllib\request.py", line 536, in _open
-    result = self._call_chain(self.handle_open, protocol, protocol +
-  File "...\3.10.4\lib\urllib\request.py", line 496, in _call_chain
-    result = func(*args)
-  File "...\3.10.4\lib\urllib\request.py", line 1391, in https_open
-    return self.do_open(http.client.HTTPSConnection, req,
-  File "...\3.10.4\lib\urllib\request.py", line 1351, in do_open
-    raise URLError(err)
-urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
-```
+   During handling of the above exception, another exception occurred:
 
-Tentu saja stack trace ini sangat membingungkan. Oleh karena itu, mari kita coba hapus baris-baris yang bukan merupakan bagian dari kode kita, namun tetap menyimpan detail error yang penting.
+   Traceback (most recent call last):
+     File "foobar.py", line 2, in <module>
+       urllib.request.urlopen("https://askjdhieqf.com")
+     File "...\3.10.4\lib\urllib\request.py", line 216, in urlopen
+       return opener.open(url, data, timeout)
+     File "...\3.10.4\lib\urllib\request.py", line 519, in open
+       response = self._open(req, data)
+     File "...\3.10.4\lib\urllib\request.py", line 536, in _open
+       result = self._call_chain(self.handle_open, protocol, protocol +
+     File "...\3.10.4\lib\urllib\request.py", line 496, in _call_chain
+       result = func(*args)
+     File "...\3.10.4\lib\urllib\request.py", line 1391, in https_open
+       return self.do_open(http.client.HTTPSConnection, req,
+     File "...\3.10.4\lib\urllib\request.py", line 1351, in do_open
+       raise URLError(err)
+   urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+   ```
 
-```
-Traceback (most recent call last):
-  ...
-socket.gaierror: [Errno 11001] getaddrinfo failed
+   Tentu saja stack trace ini sangat membingungkan. Oleh karena itu, mari kita coba hapus baris-baris yang bukan merupakan bagian dari kode kita, namun tetap menyimpan detail error yang penting.
 
-During handling of the above exception, another exception occurred:
+   ```
+   Traceback (most recent call last):
+     ...
+   socket.gaierror: [Errno 11001] getaddrinfo failed
 
-Traceback (most recent call last):
-  File "file.py", line 2, in <module>
-    urllib.request.urlopen("https://askjdhieqf.com")
-  ...
-urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
+   During handling of the above exception, another exception occurred:
 
-```
+   Traceback (most recent call last):
+     File "foobar.py", line 2, in <module>
+       urllib.request.urlopen("https://askjdhieqf.com")
+     ...
+   urllib.error.URLError: <urlopen error [Errno 11001] getaddrinfo failed>
 
-Ternyata, file `file.py`, baris kedua dengan isi `urllib.request.urlopen("https://askjdhieqf.com")` menghasilkan error tersebut! Namun, kita tidak tahu mengapa error tersebut terjadi. Oleh karena itu, mari kita coba cari di Google mengenai pesan error (`[Errno 11001] getaddrinfo failed`) tersebut.
+   ```
 
-Setelah melakukan pencarian, kita tahu bahwa ternyata error tersebut terjadi karena hostname tidak dapat ditemukan. Ini masuk akal sebab website `https://askjdhieqf.com` tidak ada di internet.
+   Ternyata, file `foobar.py`, baris kedua dengan isi `urllib.request.urlopen("https://askjdhieqf.com")` menghasilkan error tersebut! Namun, kita tidak tahu mengapa error tersebut terjadi. Oleh karena itu, mari kita coba cari di Google mengenai pesan error (`[Errno 11001] getaddrinfo failed`) tersebut.
+
+   Setelah melakukan pencarian, kita tahu bahwa ternyata error tersebut terjadi karena hostname tidak dapat ditemukan. Ini masuk akal sebab website `https://askjdhieqf.com` tidak ada di internet.
+
+3. Perhatikan konteks dari kode yang error
+   Terkadang, error tidak terjadi karena baris yang dicantumkan dalam stack trace, melainkan karena bagian kode lain yang menyebabkan baris tersebut error. Salah satu contohnya adalah penggunaan variable dengan tipe yang salah, atau nilai yang tidak benar.
+
+   Sebagai contoh, perhatikan kode Java berikut:
+
+   ```java title="Main.java" showLineNumbers
+   public class Main {
+       public static int sum(int[] nums, int i , int j) {
+           return nums[i] + nums[j];
+       }
+
+       public static void main(String args[]) {
+         int[] nums={ 1, 4, 2, 4, 5};
+         int i = 3;
+         int j = 9;
+         System.out.println("nums[i] + nums[j] = " + sum(nums, i, j));
+       }
+   }
+   ```
+
+   Berikut adalah stack trace dari program tersebut:
+
+   ```
+   Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 9 out of bounds for length 5
+     at Main.sum(Main.java:3)
+     at Main.main(Main.java:10)
+   ```
+
+   Jika kita hanya mengikuti stack trace, kita tidak dapat melihat keanehan apapun karena operasi tersebut "benar". Namun, jika kita melihat konteks error serta kode di sekitar, kita dapat tahu bahwa penyebab error ini berada pada variable `j` yang bernilai 9, sehingga program mencoba untuk mengambil indeks ke-9. Hal ini tidak benar mengingat array `nums` hanya memiliki 6 elemen.
 
 ## Mencari Solusi
 
 <center>
   <img src="https://imgs.xkcd.com/comics/tech_support_cheat_sheet.png" />
+</center>
+<center>
+  <a href="https://xkcd.com/627">xkcd 1024: Tech Support Cheat Sheet</a>
 </center>
