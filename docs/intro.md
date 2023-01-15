@@ -24,7 +24,6 @@ memutuhkan alat tersebut.
 3. Command Line
 4. Git
 5. Mengenali Error
-6. Membaca Dokumentasi
 
 ## Mengenai Proyek
 
