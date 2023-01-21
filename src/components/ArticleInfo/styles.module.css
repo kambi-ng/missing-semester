@@ -1,0 +1,10 @@
+.infoContainer {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border: 2px;
+  border-color: var(--ifm-color-primary);
+  border-style: solid;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+}
