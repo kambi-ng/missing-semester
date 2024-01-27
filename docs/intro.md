@@ -39,6 +39,7 @@ terdapat kebutuhan yang membutuhkan tools tersebut.
 3. Command Line
 4. Git
 5. Mengenali Error
+6. SSH
 
 ## Mengenai Proyek
 
